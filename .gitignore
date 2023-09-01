@@ -1,0 +1,8 @@
+.vscode/
+data/*
+Logs/
+UserData/
+!data/update_abc_2023.pak
+!data/serverlist.pak
+!data/slistcache.pak
+pic/
