@@ -1,15 +1,10 @@
---迭代函数，用于计算技能熟练度
---具体方法：
---根据1级熟练度，升级加速度，级数，重复伤害次数，范围，计算出相应等级熟练度
--- SkillExp(i) = Exp1*a^(i-1)*time*range
 function SkillExpFunc(Exp0,a,Level,Time,Range)
 	return floor(Exp0*(a^(Level-1))*Time*Range/2)
 end
 
-
 SKILLS={
 	--峨嵋
-	piaoyun_chuanxue={ --飘云穿雪
+	piaoyun_chuanxue={ --skill nay skill nao
 		physicsdamage_v={
 			[1]={{1,10},{20,120}},
 			[3]={{1,10},{20,120}},
@@ -88,7 +83,8 @@ SKILLS={
 		skill_cost_v={{{1,25},{20,25}}}
 	},
 	liushui={--流水
-		fastwalkrun_p={{{1,9},{20,66}},{{1,18},{2,18}}}
+		--fastwalkrun_p={{{1,9},{20,66}},{{1,18},{2,18}}}
+		fastwalkrun_p={{{1,5},{20,33}},{{1,18},{2,18}}}--降低一半移动速度
 	},
 	bumie_bujue={ --不灭不绝
 		physicsenhance_p={{{1,80},{20,385}}},
@@ -111,8 +107,8 @@ SKILLS={
 		skill_cost_v={{{1,30},{20,35}}}
 	},
 	mengdie={ --梦蝶
-		lifereplenish_v={{{1,1},{20,1500}},{{1,18},{2,18}}},
-		manareplenish_v={{{1,1},{20,100}},{{1,18},{2,18}}},
+		lifereplenish_v={{{1,1},{20,15}},{{1,18},{2,18}}},
+		manareplenish_v={{{1,1},{20,10}},{{1,18},{2,18}}},
 	},
 	foguang_puzhao={ --佛光普照
 		colddamage_v={
@@ -179,26 +175,32 @@ SKILLS={
 		fasthitrecover_yan_v={{{1,1},{20,10},{21,10}},{{1,18},{2,18}}},
 		allres_p={{{1,1},{20,40}},{{1,18},{2,18}}}
 	},
-	sane_jixue={ --三峨霁雪
-		physicsenhance_p={{{1,10},{15,100},{20,237}}},
-		seriesdamage_p={{{1,20},{15,20},{20,60},{21,62}}},
-		colddamage_v={
+	sane_jixue={ --9x nga my kiem tam nga te nguyet
+		
+		seriesdamage_p={{{1,20},{15,20},{20,60},{21,62}}},-- dong 1 ngu hanh tuong khac
+		skill_cost_v={{{1,35},{20,35}}},-- dong 2 tieu ton noi luc
+		skill_attackradius={{{1,448},{20,512},{21,512}}},-- dong 3 pham vi hieu qua
+		physicsenhance_p={{{1,10},{15,100},{20,500}}},-- dong 4 sat thuong vat ly 1->10: 10->100 skill 15: 80% ?
+		colddamage_v={-- bang sat ngoai cong dong 5
 			[1]={{1,10},{20,111}},
 			[3]={{1,10},{20,111}}
 		},
-		deadlystrike_p={{{1,10},{20,54}}},
+		deadlystrike_p={{{1,10},{20,54}}},--dong 6 chi mang		
+
 		missle_speed_v={{{1,28},{20,32},{21,32}}},
-		skill_attackradius={{{1,448},{20,512},{21,512}}},
-		skill_cost_v={{{1,35},{20,35}}},
-		skill_eventskilllevel={{{1,1},{20,20}}},
+
+		
+		--tang 2
 		skill_startevent={
-			[1]={{1,0},{10,0},{10,1},{20,1}},
-			[3]={{1,329},{20,329}}
+			[1]={{1,0},{10,0},{10,1},{20,1}},--muc do cong them
+			[3]={{1,329},{20,329}}--skill id tang 2
 		},
+		--ky nang 150
 		addskilldamage1={
-			[1]={{1,1061},{2,1061}},
+			[1]={{1,1061},{2,1061}},--ky nang Ki誱 Hoa V穘 Tinh settings/skills.txt
 			[3]={{1,1},{20,25}}
 		},
+		skill_eventskilllevel={{{1,1},{20,20}}},
 		skill_showevent={{{1,0},{10,0},{10,1},{20,1}}},
 		addskillexp1={{{1,0},{2,0}},{{1,1},{20,1}},{{1,0},{2,0}}},
 		skill_skillexp_v={{	{1,SkillExpFunc(5000,1.25,1,3,1)},
@@ -223,10 +225,10 @@ SKILLS={
 							{20,SkillExpFunc(5000,1.15,20,3,1)},
 							}},
 	},
-	yuquan_xichen={ --玉泉洗尘
-		physicsenhance_p={{{1,30},{20,148}}},
+	yuquan_xichen={ --329 tang 2 nga my kiem
+		physicsenhance_p={{{1,30},{20,500}}},--sat thuong vat ly
 		seriesdamage_p={{{1,20},{20,60},{21,62}}},
-		deadlystrike_p={{{1,10},{20,20}}},
+		deadlystrike_p={{{1,10},{20,20}}},--chi mang
 	},
 	jianemei150={ --剑峨眉150
 		physicsenhance_p={{{1,12},{15,120},{20,285},{23,483},{26,582}}},
@@ -264,7 +266,12 @@ SKILLS={
 												{17,17100},
 												{18,19000},
 												{19,21400},
-												{20,21000},
+												{20,90000},
+												{21,120000},
+												{22,150000},
+												{23,200000},
+												{24,250000},
+												{25,300000},
 												}},	
 	},
 	jianemei150_2={ --剑峨眉150第2式
@@ -368,7 +375,12 @@ SKILLS={
 												{17,17100},
 												{18,19000},
 												{19,21400},
-												{20,21000},
+												{20,90000},
+												{21,120000},
+												{22,150000},
+												{23,200000},
+												{24,250000},
+												{25,300000},
 												}},	
 	},
 	zhangemei150_2={ --掌峨眉150第2式
@@ -453,7 +465,12 @@ SKILLS={
 												{17,17100},
 												{18,19000},
 												{19,21400},
-												{20,21000},
+												{20,90000},
+												{21,120000},
+												{22,150000},
+												{23,200000},
+												{24,250000},
+												{25,300000},
 												}},	
 	},
 }
